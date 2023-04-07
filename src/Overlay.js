@@ -44,19 +44,19 @@ export const Overlay = () => {
               <div className="configurator__section__values">
                 <div
                   className={`item ${
-                    chairColor === "Beige" ? "item--active" : ""
+                    chairColor === "Fabric" ? "item--active" : ""
                   }`}
-                  onClick={() => setChairColor("Beige")}
+                  onClick={() => setChairColor("Fabric")}
                 >
-                  <div className="item__label">Beige</div>
+                  <div className="item__label">Fabric</div>
                 </div>
                 <div
                   className={`item ${
-                    chairColor === "Grey" ? "item--active" : ""
+                    chairColor === "Leather" ? "item--active" : ""
                   }`}
-                  onClick={() => setChairColor("Grey")}
+                  onClick={() => setChairColor("Leather")}
                 >
-                  <div className="item__label">Grey</div>
+                  <div className="item__label">Leather</div>
                 </div>
               </div>
             </div>

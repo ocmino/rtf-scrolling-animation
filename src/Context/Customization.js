@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 const CustomizationContext = createContext({});
 
 export const CustomizationProvider = (props) => {
-  const [chairColor, setChairColor] = useState("Beige");
+  const [chairColor, setChairColor] = useState("Fabric");
   const [couchColor, setCouchColor] = useState("Beige");
 
   return (

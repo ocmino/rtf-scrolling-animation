@@ -7,7 +7,7 @@ export const Experience = () => {
   return (
     <>
      <Environment preset="sunset" />
-      <spotLight intensity={0.5} position={[0.5, 0, 1]} castShadow 
+      <spotLight intensity={1} position={[0.5, 0, 1]} castShadow 
       shadow-mapSize-width={1024*2}
       shadow-mapSize-height={1024*2}
       shadow-camera-far={50}
