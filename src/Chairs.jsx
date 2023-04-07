@@ -2,13 +2,16 @@ import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import React, { useLayoutEffect, useRef } from "react";
+import * as THREE from "three";
+import { useCustomization } from "./Context/Customization";
+import { useState } from "react";
 
 export const FLOOR_HEIGHT = 0.69
 export const NB_FLOORS = 3;
 
 export function Chairs(props) {
   const { nodes, materials } = useGLTF('/Models/Chairs.glb')
-
+  const [buttonsClicked] = useState(false);
   const ref = useRef();
   const tl = useRef();
   const first = useRef();
@@ -22,6 +25,7 @@ export function Chairs(props) {
   });
 
   useLayoutEffect(() => {
+    if (!buttonsClicked) {
     tl.current = gsap.timeline();
 
     // VERTICAL ANIMATION
@@ -97,7 +101,17 @@ export function Chairs(props) {
 
 
        }
+  }, [buttonsClicked]
     );
+
+    //create a grey color
+    const grey = new THREE.Color("grey");
+    //create a red color
+    const red = new THREE.Color("red");
+    //create a beige blue color
+    const beige = new THREE.Color("beige");
+
+    const {chairColor, couchColor } = useCustomization()
 
 
   return (
@@ -105,7 +119,9 @@ export function Chairs(props) {
 
 <group ref={first} >
       <group rotation={[-1.48, 0, Math.PI / 1.5]} position={[0.75, -0.5, 0]}>
-        <mesh geometry={nodes.Cube015.geometry} material={materials.Fabric} castShadow receiveShadow/>
+        <mesh geometry={nodes.Cube015.geometry} castShadow receiveShadow>
+          <meshStandardMaterial {...chairColor === 'Beige' ? {color: beige} : {color: grey}} />
+        </mesh>
         <mesh geometry={nodes.Cube015_1.geometry} material={materials['Material.001']} castShadow receiveShadow/>
         <mesh geometry={nodes.Cube015_2.geometry} material={materials['Material.002']} castShadow receiveShadow/>
         <mesh geometry={nodes.Cube015_3.geometry} material={materials['Material.003']} castShadow receiveShadow/>
@@ -116,7 +132,9 @@ export function Chairs(props) {
       <group position={[0, 3, 0]}>
         <mesh geometry={nodes.Cube002.geometry} material={materials.Metal} castShadow receiveShadow/>
         <mesh geometry={nodes.Cube002_1.geometry} material={materials.Wood} castShadow receiveShadow/>
-        <mesh geometry={nodes.Cube002_2.geometry} material={materials.Leather} castShadow receiveShadow/>
+        <mesh geometry={nodes.Cube002_2.geometry} castShadow receiveShadow>
+          <meshStandardMaterial {...couchColor === 'Red' ? {color: red} : {color: beige}} />
+        </mesh>
         <mesh geometry={nodes.Cube002_3.geometry} material={materials['Leather.001']} castShadow receiveShadow/>
       </group>
       </group>
