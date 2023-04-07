@@ -87,7 +87,7 @@ export function DeLonghi(props) {
               third.current.rotation,
               {
                 duration: 2,
-                y: Math.PI / -2.5,
+                y: Math.PI / -3,
               },
               0
               );
@@ -100,7 +100,7 @@ export function DeLonghi(props) {
   return (
     <group {...props} dispose={null} ref={ref} style={{ margin: 0, padding: 0 }}>
 
-<group ref={first} position={[0, 0, 0]}>
+<group ref={first} position={[0.15, 0, 0]}>
       <mesh geometry={nodes.Cube009.geometry} material={materials['bottom body paint.001']} />
       <mesh geometry={nodes.Cube009_1.geometry} material={materials['main chrome.001']} />
       <mesh geometry={nodes.Cube009_2.geometry} material={materials['top buttons.001']} />
