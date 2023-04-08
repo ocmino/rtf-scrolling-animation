@@ -6,6 +6,7 @@ const CustomizationContext = createContext({});
 export const CustomizationProvider = (props) => {
   const [chairColor, setChairColor] = useState("Fabric");
   const [couchColor, setCouchColor] = useState("Beige");
+  const [loungeChairColor, setLoungeChairColor] = useState("Speckled");
 
   return (
     <CustomizationContext.Provider
@@ -14,6 +15,8 @@ export const CustomizationProvider = (props) => {
         setChairColor,
         couchColor,
         setCouchColor,
+        loungeChairColor,
+        setLoungeChairColor,
       }}
     >
       {props.children}

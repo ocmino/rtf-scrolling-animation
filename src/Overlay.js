@@ -22,7 +22,7 @@ const Section = (props) => {
 };
 
 export const Overlay = () => {
-  const { chairColor, setChairColor, couchColor, setCouchColor } =
+  const { chairColor, setChairColor, couchColor, setCouchColor, loungeChairColor, setLoungeChairColor } =
     useCustomization();
   return (
     <Scroll html>
@@ -108,6 +108,29 @@ export const Overlay = () => {
             aliquam nisl nunc vel lorem. Sed euismod, nisl nec ultricies.
           </p>
           <br />
+          <div className="">
+            <div className="">
+              <div className="configurator__section__title">Color</div>
+              <div className="configurator__section__values">
+                <div
+                  className={`item ${
+                    loungeChairColor === "Speckled" ? "item--active" : ""
+                  }`}
+                  onClick={() => setLoungeChairColor("Speckled")}
+                >
+                  <div className="item__label">Speckled</div>
+                </div>
+                <div
+                  className={`item ${
+                    loungeChairColor === "Yellow" ? "item--active" : ""
+                  }`}
+                  onClick={() => setLoungeChairColor("Yellow")}
+                >
+                  <div className="item__label">Yellow</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </Section>
       </div>
     </Scroll>

@@ -19,7 +19,7 @@ export function Chairs(props) {
   const second = useRef();
   const third = useRef();
   const scroll = useScroll();
-  const { chairColor, couchColor } = useCustomization();
+  const { chairColor, couchColor, loungeChairColor } = useCustomization();
 
   useFrame(() => {
     tl.current.seek(scroll.offset * tl.current.duration());
@@ -102,39 +102,40 @@ export function Chairs(props) {
 
   const red = new THREE.Color("red");
   const beige = new THREE.Color("beige");
+  const yellow = new THREE.Color("yellow");
+  const speckled = materials["Material.008"];
 
   const ChairFabric = useTexture({
-    map: '/Textures/Fabric_035_basecolor.jpg',
-    normalMap: '/Textures/Substance_Graph_Normal.jpg',
-    roughnessMap: '/Textures/Substance_Graph_Roughness.jpg',
-    aoMap: '/Textures/Fabric_035_ambientOcclusion.jpg',
-  })
+    map: "/Textures/Fabric_035_basecolor.jpg",
+    normalMap: "/Textures/Substance_Graph_Normal.jpg",
+    roughnessMap: "/Textures/Substance_Graph_Roughness.jpg",
+    aoMap: "/Textures/Fabric_035_ambientOcclusion.jpg",
+  });
 
-  ChairFabric.map.repeat.set(1, 1)
-  ChairFabric.map.wrapS = ChairFabric.map.wrapT = THREE.RepeatWrapping
-  ChairFabric.normalMap.repeat.set(1, 1)
-  ChairFabric.normalMap.wrapS = ChairFabric.normalMap.wrapT = THREE.RepeatWrapping
-  ChairFabric.roughnessMap.repeat.set(1, 1)
-  ChairFabric.roughnessMap.wrapS = ChairFabric.roughnessMap.wrapT = THREE.RepeatWrapping
-  ChairFabric.aoMap.repeat.set(1, 1)
-  ChairFabric.aoMap.wrapS = ChairFabric.aoMap.wrapT = THREE.RepeatWrapping
+  ChairFabric.map.repeat.set(1, 1);
+  ChairFabric.map.wrapS = ChairFabric.map.wrapT = THREE.RepeatWrapping;
+  ChairFabric.normalMap.repeat.set(1, 1);
+  ChairFabric.normalMap.wrapS = ChairFabric.normalMap.wrapT = THREE.RepeatWrapping;
+  ChairFabric.roughnessMap.repeat.set(1, 1);
+  ChairFabric.roughnessMap.wrapS = ChairFabric.roughnessMap.wrapT = THREE.RepeatWrapping;
+  ChairFabric.aoMap.repeat.set(1, 1);
+  ChairFabric.aoMap.wrapS = ChairFabric.aoMap.wrapT = THREE.RepeatWrapping;
 
   const ChairLeather = useTexture({
-    map: '/Textures/Leather_006_COLOR.jpg',
-    normalMap: '/Textures/Leather_006_NORM.jpg',
-    roughnessMap: '/Textures/Leather_006_ROUGH.jpg',
-    aoMap: '/Textures/Leather_006_OCC.jpg',
-  })
+    map: "/Textures/Leather_006_COLOR.jpg",
+    normalMap: "/Textures/Leather_006_NORM.jpg",
+    roughnessMap: "/Textures/Leather_006_ROUGH.jpg",
+    aoMap: "/Textures/Leather_006_OCC.jpg",
+  });
 
-  ChairLeather.map.repeat.set(3, 3)
-  ChairLeather.map.wrapS = ChairLeather.map.wrapT = THREE.RepeatWrapping
-  ChairLeather.normalMap.repeat.set(3, 3)
-  ChairLeather.normalMap.wrapS = ChairLeather.normalMap.wrapT = THREE.RepeatWrapping
-  ChairLeather.roughnessMap.repeat.set(3, 3)
-  ChairLeather.roughnessMap.wrapS = ChairLeather.roughnessMap.wrapT = THREE.RepeatWrapping
-  ChairLeather.aoMap.repeat.set(3, 3)
-  ChairLeather.aoMap.wrapS = ChairLeather.aoMap.wrapT = THREE.RepeatWrapping
-
+  ChairLeather.map.repeat.set(3, 3);
+  ChairLeather.map.wrapS = ChairLeather.map.wrapT = THREE.RepeatWrapping;
+  ChairLeather.normalMap.repeat.set(3, 3);
+  ChairLeather.normalMap.wrapS = ChairLeather.normalMap.wrapT = THREE.RepeatWrapping;
+  ChairLeather.roughnessMap.repeat.set(3, 3);
+  ChairLeather.roughnessMap.wrapS = ChairLeather.roughnessMap.wrapT = THREE.RepeatWrapping;
+  ChairLeather.aoMap.repeat.set(3, 3);
+  ChairLeather.aoMap.wrapS = ChairLeather.aoMap.wrapT = THREE.RepeatWrapping;
 
   return (
     <group
@@ -148,7 +149,7 @@ export function Chairs(props) {
         <group rotation={[-1.48, 0, Math.PI / 1.5]} position={[0.75, -0.5, 0]}>
           <mesh geometry={nodes.Cube015.geometry} castShadow receiveShadow>
             <meshStandardMaterial
-              {...(chairColor === "Fabric" ? ChairFabric : ChairLeather)}
+              {...chairColor === "Fabric" ? ChairFabric : ChairLeather}
             />
           </mesh>
           <mesh
@@ -188,7 +189,7 @@ export function Chairs(props) {
           />
           <mesh geometry={nodes.Cube002_2.geometry} castShadow receiveShadow>
             <meshStandardMaterial
-              {...(couchColor === "Red" ? { color: red } : { color: beige })}
+              {...couchColor === "Red" ? { color: red } : { color: beige }}
             />
           </mesh>
           <mesh
@@ -228,10 +229,13 @@ export function Chairs(props) {
           />
           <mesh
             geometry={nodes.Cylinder003_5.geometry}
-            material={materials["Material.008"]}
             castShadow
             receiveShadow
-          />
+          >
+            <meshStandardMaterial
+            {...loungeChairColor === "Speckled" ? speckled : { color: yellow }}
+            />
+          </mesh>
         </group>
       </group>
     </group>
